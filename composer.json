@@ -1,0 +1,24 @@
+{
+    "name": "opmvpc/brainfuck-php",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Opmvpc\\BrainfuckPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "opmvpc",
+            "email": "thibsix@outlook.be"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^2.34"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
