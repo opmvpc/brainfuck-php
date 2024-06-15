@@ -12,7 +12,7 @@ class BrainFuck
 
     public function __construct(string $path)
     {
-        $this->content = FileReader::read($path);
+        $this->content = \file_get_contents(\realpath($path));
         $this->contentCursor = 0;
         $this->cellCursor = 0;
         $this->stack = [];
@@ -21,9 +21,9 @@ class BrainFuck
 
     public function start(): void
     {
-        $time_start = microtime(true);
+        $time_start = \microtime(true);
 
-        while ($this->contentCursor < strlen($this->content)) {
+        while ($this->contentCursor < \strlen($this->content)) {
             $char = $this->content[$this->contentCursor];
 
             try {
@@ -43,7 +43,7 @@ class BrainFuck
             ++$this->contentCursor;
         }
 
-        $time_end = microtime(true);
+        $time_end = \microtime(true);
         $time = $time_end - $time_start;
         echo "{$time}";
     }
@@ -82,7 +82,7 @@ class BrainFuck
 
     private function outputCell(): void
     {
-        printf('%c', $this->cells[$this->cellCursor]);
+        \printf('%c', $this->cells[$this->cellCursor]);
     }
 
     private function openBracket(): void
@@ -109,15 +109,15 @@ class BrainFuck
     private function closeBracket(): void
     {
         if (0 === $this->cells[$this->cellCursor]) {
-            array_pop($this->stack);
+            \array_pop($this->stack);
         } else {
-            $this->contentCursor = $this->stack[count($this->stack) - 1];
+            $this->contentCursor = $this->stack[\count($this->stack) - 1];
         }
     }
 
     private function inputCell(): void
     {
-        $input = readline("Input a character : \n");
-        $this->cells[$this->cellCursor] = ord($input);
+        $input = \readline("Input a character : \n");
+        $this->cells[$this->cellCursor] = \ord($input);
     }
 }
