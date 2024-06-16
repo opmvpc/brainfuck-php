@@ -7,7 +7,6 @@ function start(string $path): void
     $cellCursor = 0;
     $stack = [];
     $cells = newFixedArray();
-    $time_start = \microtime(true);
 
     while ($contentCursor < \strlen($content)) {
         $char = $content[$contentCursor];
@@ -28,10 +27,6 @@ function start(string $path): void
 
         ++$contentCursor;
     }
-
-    $time_end = \microtime(true);
-    $time = $time_end - $time_start;
-    echo "{$time} secondes";
 }
 
 function newFixedArray(): array
@@ -76,4 +71,10 @@ function closeBracket(array $cells, int $cellCursor, array &$stack, int &$conten
     }
 }
 
+$time_start = \microtime(true);
+
 start($argv[1]);
+
+$time_end = \microtime(true);
+$time = $time_end - $time_start;
+echo "{$time} secondes";
